@@ -41,7 +41,6 @@ public class ActivityMain extends ActivityApp implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		//atuliza action bar.
 		String titulo = " ";
 		updateActionBar(titulo);
@@ -49,7 +48,6 @@ public class ActivityMain extends ActivityApp implements
 		toolbar.setDisplayShowTitleEnabled(false);
 		//cria instancia do fragmento que exibirá lista com todas as pragas
 		//fragmento_listaPragas = new Fragmento_ListaPragas() ;
-
 		//cria menu lateral esquerdo, o que exibe ao arrastar com o dedo
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
