@@ -1,0 +1,7 @@
+br.embrapa.cpao.pragas.Adapters
+br.embrapa.cpao.pragas.dao
+br.embrapa.cpao.pragas.fragments
+br.embrapa.cpao.pragas.models
+br.embrapa.cpao.pragas.resource
+br.embrapa.cpao.pragas.utils
+br.embrapa.cpao.pragas.views

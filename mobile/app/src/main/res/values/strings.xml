@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pragas da Soja</string>
+    
+    <string name="title_section1">Pragas da Soja</string>
+    <string name="title_section2">Sobre</string>
+    <string name="title_section3">Ajuda</string>
+    
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Opções</string>
+    <string name="action_pesquisar">Pesquisar</string>
+    <string name="action_enviar_praga">Enviar praga desconhecida</string>
+    <string name="action_pesquisar_hint">Pesquisar por praga</string>
+    <string name="action_sair">Sair</string>
+    
+    <string name="nome">Nome</string>
+    <string name="nome_cientifico">NOME CIENTIFICO</string>
+    <string name="oqueeh">O que é?</string>
+    <string name="biologia">Biologia</string>
+    <string name="comportamento">Comportamento</string>
+    <string name="danos">Danos</string>
+    <string name="localizacao">Localização</string>
+    <string name="controle">Controle</string>
+    <string name="bibliografia">Literatura recomendada</string>
+    <string name="autor">Autor</string>
+    <string name="embrapa">Embrapa</string>
+    <string name="TODO">TODO</string>
+    
+    <string name="descricao">Descrição</string>
+    <string name="atualizar_bd">Atualizar Banco de Dados</string>
+    <string name="atualizar_bd_descricao">fazer download de novas pragas.</string>
+    <string name="atualizando_bd">Atualizando banco de dados, isso pode demorar alguns segundos ...</string>
+    <string name="pergunta_atualizar_bd">Para atualizar a base de dados aconselhamos estar conectado à internet via WIFI </string>
+    <string name="continuar">Continuar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="atualizacao_cancelada">A atualização foi cancelada</string>
+    <string name="aguarde">Aguarde ...</string>
+    <string name="opcoes">Opções</string>
+	<string name="voltar">Voltar</string>
+    <string name="sem_descricao">Sem descrição</string>
+    <string name="enviar_praga">Enviar praga desconhecida</string>
+    <string name="enviar_praga_descricao">pesquisadores vão estudar a praga e entrar em contato.</string>
+    <string name="feedback">Feedback:</string>
+    <string name="fale_conosco">Fale conosco</string>
+    <string name="fale_conosco_descricao">críticas, sugestões e elogios.</string>
+    <string name="ajuda">Ajuda</string>
+    <string name="ajuda_descricao">será aberto uma página de ajuda na internet</string>
+    <string name="fica_tecnica">Ficha técnica</string>
+    <string name="fica_catalografica">Ficha catalográfica</string>
+    <string name="inicio">Inicio</string>
+    <string name="sobre">Sobre</string>
+    <string name="email">Email:</string>
+    <string name="enviar">Enviar</string>
+    <string name="responderemos_em_seu_email">* Responderemos em seu Email</string>
+    <string name="campos_incompleto">Os campos precisam ser preenchidos</string>
+    <string name="hint_feedback">Descreva uma sugestão, problema ou crítica.</string>
+    <string name="descricao_enviarpraga">Breve descrição sobre a praga</string>
+    <string name="title_enviarpraga">Enviar Praga desconhecidas</string>
+
+    <string name="erro_exibir_conteudo">Não foi possível exibir conteúdo</string>
+    
+    <string name="galeria">Galeria</string>
+    <string name="camera">Câmera</string>
+    <string name="selecionar_opcao">Selecionar Opção</string>
+    <string name="aguarde_descricao">enviando informações, aguarde alguns instantes.</string>
+    <string name="sucesso_enviar_praga_desconhecida">Obrigado por enviar essas informações, pesquisadores vão estudar esta praga e responderemos em seu email</string>
+    <string name="falha_enviar_praga_desconhecida">Falha ao enviar praga desconhecida,  Verifique sua conexão com a internet</string>
+    <string name="cancela_envio">Envio cancelado</string>
+    <string name="title_activity_activity_text2">Praga</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main2222">Main2222Activity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_activity_splash">ActivitySplash</string>
+    <string name="apresentacao">Apresentação</string>
+    <string name="apresentacao_texto" >Pragas da Soja é um aplicativo desenvolvido para o sistema Android e apresenta as principais características das 15 pragas de importância para a cultura da soja.
+\n\nA Embrapa, pensando em facilitar o dia-a-dia do técnico e do produtor, projetou o aplicativo para que fosse possível o acesso à informação de forma rápida e prática, em qualquer lugar.
+
+\n\nO aplicativo aborda o tema pragas sob os seguintes aspectos: a) o que é a praga? b) biologia; c) comportamento; d) danos; e) localização na planta e geográfica; f) controle; e g) literatura recomendada.
+
+\n\nPossibilita enviar imagens de pragas que estejam ocorrendo em sua lavoura e que ainda não se encontram no aplicativo. Com essas imagens o pesquisador da Embrapa poderá analisar, identificar, realizar estudos e informá-lo sobre os resultados.
+
+\n\nA atualização do aplicativo será feita quando houver ocorrência de outras pragas  importantes para a cultura da soja.</string>
+</resources>

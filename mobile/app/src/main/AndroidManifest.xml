@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.embrapa.cpao.pragas"
+    android:versionCode="2"
+    android:versionName="1.15.10-2-rc" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppBaseTheme">
+        <activity
+            android:name=".views.ActivityMain">
+        </activity>
+        <activity
+            android:name=".views.ActivityApresentacao"
+            android:launchMode="singleTask"
+            android:largeHeap="true"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".views.ActivityFeedBack"
+            android:theme="@style/CustomBaseTheme" />
+        <activity
+            android:name=".views.ActivityEnviarPragaDesconhecida"
+            android:theme="@style/CustomBaseTheme" />
+        <activity
+            android:name=".views.ActivityOpcoes"
+            android:theme="@style/CustomBaseTheme" />
+        <activity
+            android:name=".views.ActivityPraga"
+            android:launchMode= "singleInstance"
+            android:screenOrientation="sensor"
+            android:largeHeap="true"
+            android:theme="@style/CustomBaseTheme" />
+        <activity
+            android:name=".views.ActivityShowImage"
+            android:largeHeap="true"
+            android:theme="@style/CustomBaseTheme" />
+        <activity
+            android:name=".views.ActivityInfo"
+            android:parentActivityName=".views.ActivityPraga"
+            android:theme="@style/CustomBaseTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.embrapa.cpao.pragas.views.ActivityPraga" />
+        </activity>
+        <activity
+            android:name=".views.ActivitySplash"
+            android:launchMode="singleTask"
+            android:theme="@style/CustomBaseTheme"
+            android:label="@string/app_name" >
+
+        </activity>
+
+        <service
+            android:name="br.embrapa.cpao.pragas.services.UpgradeService"
+            android:exported="false"/>
+    </application>
+
+</manifest>

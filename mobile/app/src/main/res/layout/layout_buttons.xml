@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_corpo"
+    android:paddingTop="14dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btOque"
+            android:text="@string/oqueeh"
+            style="@style/StyleButtonBase"/>
+
+        <Button
+            android:id="@+id/btBiologia"
+            android:text="@string/biologia"
+            style="@style/StyleButtonBase"/>
+
+        <Button
+            android:id="@+id/btComportamento"
+            android:text="@string/comportamento"
+            style="@style/StyleButtonBase"/>
+
+        <Button
+            android:id="@+id/btDanos"
+            android:text="@string/danos"
+            style="@style/StyleButtonBase" />
+
+        <Button
+            android:id="@+id/btLocalizacao"
+            android:text="@string/localizacao"
+            style="@style/StyleButtonBase" />
+
+        <Button
+            android:id="@+id/btControle"
+            android:text="@string/controle"
+            style="@style/StyleButtonBase" />
+
+        <Button
+            android:id="@+id/btBibliografia"
+            android:text="@string/bibliografia"
+            style="@style/StyleButtonBase"/>
+    </LinearLayout>
+
+</LinearLayout>

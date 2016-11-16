@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+    tools:context=".views.ActivityPraga">
+
+    <include layout="@layout/actionbar_custom"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                card_view:cardCornerRadius="0dp"
+                card_view:cardElevation="0dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_galeria"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/galeria_height"/>
+            </android.support.v7.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tvNomeCientifico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/nome_cientifico"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="italic" />
+
+            <include layout="@layout/layout_buttons"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include  layout="@layout/rodape"/>
+</LinearLayout>

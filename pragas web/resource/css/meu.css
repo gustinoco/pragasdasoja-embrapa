@@ -1,0 +1,154 @@
+.btMais{
+	float: right;
+}
+.corTema{
+	color: #DB9A33;
+}
+.rodape{
+	background: #DB9A33;	
+}
+.bt-remover{
+	background: #FF0000;
+	font-weight: bold;
+	margin: 0;
+}
+#col-tab{
+	text-align: left;
+}
+.bt-salvar{
+	margin: 1rem;
+	padding: 0.5rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	font-weight: bold;
+}
+.bt-editar{
+	font-weight: bold;
+	margin: 0;
+}
+#menu {
+	text-align: center;
+	width: 100%;
+	color: #666;
+	border: 1px solid;
+	border-color: #ccc;
+	background: #F5F5F5;
+}
+#menu ul li {
+	border-bottom: 1px solid #CCC;
+	text-align: left;
+	list-style-type: none;
+}
+#menu a:link {
+	background: #F5F5F5;
+	color: #666;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 8px;
+	display: block;
+}
+#titulo{
+	color: #666;
+	font-weight: bold;
+}
+#menu a:visited{
+	color: #666;
+}
+#menu a:hover {
+	background: #E5F0FF;
+	color: #666;
+}
+.my_icon{
+	width:32px;
+	height:32px;
+}
+.menu_fotos{
+	margin:0% auto; 
+	width: 95%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.foto_do_menu{
+	width: 9.5em;
+	height: 9em;
+	margin: 0.05em auto;
+}
+.bt-search{
+	width:32px;
+	height:32px;
+	margin: 7px 5px;
+}
+.foto{
+	height:100%;
+}
+.cabecalho{
+	margin-bottom:60px;
+}
+.rodape{
+	width:100%;
+	background:#DB9A33;
+}
+
+.titulo{
+	color:#FFF;
+	background: #DB9A33;
+	border-radius: 10px;
+}
+.p_rodape{
+	font-size:14px;
+	color:#666;
+}
+.img_topbar{
+	height:32px; 
+	margin-top:7px;
+	margin-left:3px;
+}
+.img_search{
+	height:20px; 
+}
+.p_autor{
+	color:#666;
+}
+
+
+.bt-cadastrar{
+	font-weight: bold;
+	color:#000000;
+	background:#f5f5f5;
+	border:1px solid #bbb;
+	text-shadow:0px 1px 0px #fff;
+	box-shadow:0px 1px 10px #d1cfd1;
+	border-radius:10px 10px 10px 10px;
+	padding:1px 20px;
+	margin:0 auto;
+}
+.bt-cadastrar:active{
+	cursor:pointer;
+	position:relative;
+	top:2px;
+}
+
+
+/* GALERIA DE FOTOS */
+.content-foto{
+  width: 160px;
+  float: left;
+  padding:5px 2px 5px 2px;
+  background: #ddd;
+}
+.thumb {
+  width : 150px;
+  height: 100px;
+  border: 1px solid #000;
+  margin: 10px 5px 5px 5px;
+}
+
+.content-foto input, .content-foto p{
+  width: 145px;
+  margin: 0px 0px 5px 5px;
+}
+
+.galeria{
+  width: 100%;
+}
+

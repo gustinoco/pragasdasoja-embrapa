@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="primaryDark">#CA8922</color>
+	<color name="primary">#DB9A33</color>
+	<color name="primaryTransparent">#38db9a33</color>
+	<color name="primaryLow">#DBBD77</color>
+	<color name="white">#FFFFFF</color>
+
+	<color name="cancel">#ff5f5f</color>
+	<color name="positvo">#0c7fd7</color>
+	<color name="verde">#37d168</color>
+</resources>

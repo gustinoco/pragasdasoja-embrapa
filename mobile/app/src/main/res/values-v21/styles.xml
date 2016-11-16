@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+                <item name="actionBarStyle">@style/MyActionBar</item>
+                <item name="actionModeStyle">@style/MyActionMode</item>
+                <item name="android:elevation">0dp</item>
+        </style>
+</resources>

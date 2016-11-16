@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:paddingBottom="14dp"
+    android:paddingLeft="@dimen/padding_left_item_list_praga"
+    android:paddingRight="18dp"
+    android:paddingTop="14dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivFoto"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_embrapa"
+        app:civ_border_width="0.5dp"
+        app:civ_border_color="#aaccc4c8"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <br.embrapa.cpao.pragas.widget.MyTextView
+            xmlns:pragas="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOME PRAGA"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/text_size_item_list"
+            android:textColor="#464646"
+            pragas:selectFont="montserrat_bold.ttf"/>
+
+        <TextView
+            android:id="@+id/tvDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome cientifico"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#555"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+</LinearLayout>
