@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -155,7 +156,9 @@ public class AdapterListPraga extends BaseAdapter {
         }
         public void update(Praga p){
             tvTitulo.setText(p.getNome());
-            tvDescricao.setText(p.getNomeCientifico());
+            //tvDescricao.setText(p.getNomeCientifico());
+            tvDescricao.setText(Html.fromHtml("<i>" + p.getNomeCientifico() + "</i>"));
+
 
             if(ivHelper!=null){
                 ivHelper.cancel(true);

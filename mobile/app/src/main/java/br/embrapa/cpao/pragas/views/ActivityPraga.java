@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -129,7 +130,8 @@ public class ActivityPraga extends ActivityApp {
         int id_praga = getIntent().getExtras().getInt("ID");
 
         praga = pragasController.get(id_praga);
-        tvNomeCientifico.setText(praga.getNomeCientifico());
+        //tvNomeCientifico.setText(praga.getNomeCientifico());
+        tvNomeCientifico.setText(Html.fromHtml("<i>" + praga.getNomeCientifico()+ "</i>"));
         carregarGaleria();
     }
 

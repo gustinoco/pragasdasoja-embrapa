@@ -2,19 +2,20 @@ package br.embrapa.cpao.pragas.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.method.ScrollingMovementMethod;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.TextView;
 
 import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.utils.K;
-import br.embrapa.cpao.pragas.utils.Util;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 
 /**
@@ -43,7 +44,9 @@ public class FragmentPage extends Fragment {
     /**
      * Representa conteúdo html que será exibido na pagina
      */
-    private WebView wvConteudo;
+    private TextView txtView;
+
+   private ScaleGestureDetector scaleGestureDetector;
 
 
     /**
@@ -65,62 +68,38 @@ public class FragmentPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_text, container, false);
-        //recupera webview do fragmento
-        wvConteudo = (WebView) rootView.findViewById(R.id.webView);
-        //TODO: zoom, pagina das informações das pragas
-        //WebSettings webSettings = wvConteudo.getSettings();
-        //webSettings.setSupportZoom(true);
-        //webSettings.setBuiltInZoomControls(true);
-        //webSettings.setDisplayZoomControls(false);
-        // disable scroll on touch
-        /*wvConteudo.setOnTouchListener(new View.OnTouchListener() {
+        txtView = (TextView) rootView.findViewById(R.id.txtArea);
+        txtView.setMovementMethod(new ScrollingMovementMethod());
+        txtView.setText(Html.fromHtml(getArguments().getString(K.CONTEUDO)));
+        scaleGestureDetector = new ScaleGestureDetector(getActivity(), new simpleOnScaleGestureListener());
 
+
+        rootView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                return (event.getAction() == MotionEvent.ACTION_MOVE);
+                if(event.getAction() == MotionEvent.ACTION_MOVE){
+                    scaleGestureDetector.onTouchEvent(event);
+                }
+                return true;
             }
-        });*/
-        //adiciona conteudo que será exibido na pagina
-        String conteudo = getHeader();
-        conteudo += getArguments().getString(K.CONTEUDO);
-        addConteudo(conteudo);
-
+        });
         return rootView;
     }
 
-    /**
-     * Adiciona conteudo no webview que sera exibido na pagina
-     *
-     * @param conteudo
-     */
-    private void addConteudo(String conteudo) {
-        try {
-            wvConteudo.loadData(
-                    URLEncoder.encode(conteudo, Util.getCharset()).replaceAll("\\+", " "),
-                    "text/html",
-                    Util.getCharset()
-            );
-        } catch (UnsupportedEncodingException e) {
-            try {
-                wvConteudo.loadData(
-                        URLEncoder.encode(getString(R.string.erro_exibir_conteudo), Util.getCharset()).replaceAll("\\+", " "),
-                        "text/html",
-                        Util.getCharset()
-                );
-            } catch (UnsupportedEncodingException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
+
+    public class simpleOnScaleGestureListener extends
+            ScaleGestureDetector.SimpleOnScaleGestureListener {
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            // TODO Auto-generated method stub
+            float size = txtView.getTextSize();
+
+            float factor = detector.getScaleFactor();
+            float product = size*factor;
+            txtView.setTextSize(TypedValue.COMPLEX_UNIT_PX, product);
+
+            size = txtView.getTextSize();
+            return true;
         }
     }
-
-    /**
-     * Retorna cabeçalho do html que será adicionado no WebView
-     *
-     * @return
-     */
-    private String getHeader() {
-        return "<html><head> <meta charset='" + Util.getCharset() + "'></head><body> ";
-    }
-
-
 }

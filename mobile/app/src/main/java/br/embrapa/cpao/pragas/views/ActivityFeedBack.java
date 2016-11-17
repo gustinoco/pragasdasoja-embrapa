@@ -106,7 +106,7 @@ public class ActivityFeedBack extends ActivityApp {
         Context ctxt;
         public PostFeedBack(Context ctxt, Feedback fb) {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(ctxt);
-            builder1.setMessage("Seu feedback foi enviado, obrigado por contribuir com nosso projeto.");
+            builder1.setMessage("O seu email foi enviado com sucesso. Agradecemos sua contribuição em breve entraremos em contato.");
             builder1.setCancelable(false);
 
             builder1.setPositiveButton(
