@@ -38,7 +38,7 @@ import br.embrapa.cpao.pragas.utils.K;
  * @version 1.0
  */
 public class ActivityApresentacao extends Activity implements ResultTask, ServiceConnection{
-
+//
     /**
      * Variaveis indicam estado do botão btAction.
      */

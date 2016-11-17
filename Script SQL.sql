@@ -63,6 +63,7 @@ INSERT INTO `Categoria` (`id`, `nome`) VALUES
 
 -- --------------------------------------------------------
 
+
 --
 -- Estrutura da tabela `Feedback`
 --
@@ -429,3 +430,31 @@ ALTER TABLE `UsuarioRetorno_Foto`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Apresentação`
+--
+
+CREATE TABLE `Apresentacao` (  
+  `texto`TEXT 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `Apresentação`
+--
+
+INSERT INTO `Apresentacao` (`texto`) VALUES
+('Pragas da Soja é um aplicativo desenvolvido para o sistema Android e apresenta as principais características das 15 pragas de importância para a cultura da soja.
+\n\nA Embrapa, pensando em facilitar o dia-a-dia do técnico e do produtor, projetou o aplicativo para que fosse possível o acesso à informação de forma rápida e prática, em qualquer lugar.
+
+\n\nO aplicativo aborda o tema pragas sob os seguintes aspectos: a) o que é a praga? b) biologia; c) comportamento; d) danos; e) localização na planta e geográfica; f) controle; e g) literatura recomendada.
+
+\n\nPossibilita enviar imagens de pragas que estejam ocorrendo em sua lavoura e que ainda não se encontram no aplicativo. Com essas imagens o pesquisador da Embrapa poderá analisar, identificar, realizar estudos e informá-lo sobre os resultados.
+
+\n\nA atualização do aplicativo será feita quando houver ocorrência de outras pragas  importantes para a cultura da soja.');
+
+-- --------------------------------------------------------

@@ -78,12 +78,4 @@
     <string name="todo">TODO</string>
     <string name="title_activity_activity_splash">ActivitySplash</string>
     <string name="apresentacao">Apresentação</string>
-    <string name="apresentacao_texto" >Pragas da Soja é um aplicativo desenvolvido para o sistema Android e apresenta as principais características das 15 pragas de importância para a cultura da soja.
-\n\nA Embrapa, pensando em facilitar o dia-a-dia do técnico e do produtor, projetou o aplicativo para que fosse possível o acesso à informação de forma rápida e prática, em qualquer lugar.
-
-\n\nO aplicativo aborda o tema pragas sob os seguintes aspectos: a) o que é a praga? b) biologia; c) comportamento; d) danos; e) localização na planta e geográfica; f) controle; e g) literatura recomendada.
-
-\n\nPossibilita enviar imagens de pragas que estejam ocorrendo em sua lavoura e que ainda não se encontram no aplicativo. Com essas imagens o pesquisador da Embrapa poderá analisar, identificar, realizar estudos e informá-lo sobre os resultados.
-
-\n\nA atualização do aplicativo será feita quando houver ocorrência de outras pragas  importantes para a cultura da soja.</string>
 </resources>
