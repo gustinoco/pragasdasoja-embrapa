@@ -85,7 +85,7 @@ public class FragmentPage extends Fragment {
         return rootView;
     }
 
-
+//metodo responsavel pelo Zoom
     public class simpleOnScaleGestureListener extends
             ScaleGestureDetector.SimpleOnScaleGestureListener {
 
@@ -93,11 +93,9 @@ public class FragmentPage extends Fragment {
         public boolean onScale(ScaleGestureDetector detector) {
             // TODO Auto-generated method stub
             float size = txtView.getTextSize();
-
             float factor = detector.getScaleFactor();
             float product = size*factor;
             txtView.setTextSize(TypedValue.COMPLEX_UNIT_PX, product);
-
             size = txtView.getTextSize();
             return true;
         }

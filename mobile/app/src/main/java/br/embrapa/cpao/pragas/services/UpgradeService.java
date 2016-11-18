@@ -20,10 +20,13 @@ import java.util.Map;
 import java.util.Random;
 
 import br.embrapa.cpao.pragas.R;
+import br.embrapa.cpao.pragas.dao.ApresentacaoDAO;
 import br.embrapa.cpao.pragas.dao.FotoDAO;
 import br.embrapa.cpao.pragas.dao.PragaDAO;
+import br.embrapa.cpao.pragas.models.Apresentacao;
 import br.embrapa.cpao.pragas.models.Praga;
 import br.embrapa.cpao.pragas.models.PragaFoto;
+import br.embrapa.cpao.pragas.resource.ApresentacaoResource;
 import br.embrapa.cpao.pragas.resource.FotoResource;
 import br.embrapa.cpao.pragas.resource.PragaResource;
 import br.embrapa.cpao.pragas.utils.K;
@@ -178,11 +181,20 @@ public class UpgradeService extends IntentService  {
         this.progress=1;
         PragaDAO daoPraga = PragaDAO.getInstance(context);
         FotoDAO daoFoto = FotoDAO.getInstance(context);
+        ApresentacaoDAO daoApresentacao = ApresentacaoDAO.getInstance(context);
         idsPragasBaixadas = new ArrayList<>();
 
         List<Praga> novasPragas;
         boolean sucesso = false;
         int cont=0;
+        Apresentacao apresentacao = new Apresentacao();
+
+        apresentacao = ApresentacaoResource.atualizaApresentacao(context);
+        if(apresentacao == null)
+            return false;
+        else{
+            daoApresentacao.salvar(apresentacao);
+        }
 
         //primeiro baixa lista de todos os ids de pragas que existem no banco externo
         //faz isso para verificar se alguma praga do banco local foi excluido no banco externo
@@ -242,6 +254,7 @@ public class UpgradeService extends IntentService  {
             try {
                 novasPragas = PragaResource.downloadPragas(context,
                         daoPraga.recuperarMapPragasExistentes());
+
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 sendProgess(0,-1);
@@ -261,8 +274,6 @@ public class UpgradeService extends IntentService  {
 
 
                     for(PragaFoto f : p.getFotos()){
-
-
                         try {
                             //faz download da foto
                             FotoResource.download(context,f);

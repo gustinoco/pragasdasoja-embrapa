@@ -28,14 +28,12 @@ public class BDHelper extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		//db.execSQL(AutorDAO.SCRIPT_CRIAR_TABELA);//removido autor.
 		db.execSQL(FotoDAO.SCRIPT_CRIAR_TABELA);
 		db.execSQL(CategoriaDAO.SCRIPT_CRIAR_TABELA);
 		db.execSQL(PragaDAO.SCRIP_CRIAR_TABELA);
 		db.execSQL(CategoriaDAO.SCRIPT_CRIAR_TABELA_RELACAO_PRAGA);
-		
+		db.execSQL(ApresentacaoDAO.SCRIPT_CRIAR_TABELA);
 	}
-
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -45,10 +43,7 @@ public class BDHelper extends SQLiteOpenHelper{
 		db.execSQL(CategoriaDAO.SCRIPT_DELETAR_TABELA);
 		db.execSQL(PragaDAO.SCRIPT_DELETAR_TABELA);
 		db.execSQL(CategoriaDAO.SCRIPT_DELETAR_TABELA_RELACAO);
+		db.execSQL(ApresentacaoDAO.SCRIPT_DELETAR_TABELA);
 		onCreate(db);
 	}
-
-	
-
-
 }

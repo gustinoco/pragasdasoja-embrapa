@@ -2,87 +2,80 @@
 
 require_once '../restrito.php';
 include '../../template/cabecalho.php';
-include '../../../dao/UsuarioSistemaDAO.class.php';
+include '../../../dao/ApresentacaoDAO.php';
 
-$dao = new UsuarioSistemaDAO();
+$dao = new ApresentacaoDAO();
+$praga = $dao->listar();
 
-$titulo='Cadastrando novo usuario';
+$titulo='Gerenciar menu Apresentação Mobile';
 
-/** VERIFICA SE FOI PASSADO ALGUM ID POR POST, SE SIM, ENTÃO USUARIO DESEJA ALTERAR O CONTEÚDO*/
-if(isset($_POST['id']) AND is_numeric($_POST['id'])){
-	$dao=new UsuarioSistemaDAO();
-	$usuario = $dao->buscar($_POST['id']);
-	$titulo='Editando usuario "'.$usuario->login.'"';
-}
 
 ?>
 <!-- CONFERE CAMPOS VAZIOS -->
 <script type="text/javascript">
 
     function confere() {
-    	if ( document.getElementById("login").value == "")  {      
-	        alert("Por favor, preencha o login."); 
+    	if ( document.getElementById("apresentacao").value == "")  {      
+	        alert("Por favor, preencha com algum texto."); 
 	        return false;
-	    }
-	    if ( document.getElementById("senha").value == "")  {      
-	        alert("Por favor, preencha a senha."); 
-	        return false;
-	    }
+	    }	    
 	    return true;
     }
 </script>
-<!-- SCRIPT VERIFICA CAMPOS VAZIOS -->
 
-<!-- CRIA MENU LATERAL -->
+
+
 <div class="large-3 columns">
 	<div class="">
 		<?php include '../../plugin/menu_lateral_admin.php'; ?>
 	</div>
 </div>
-<!-- FIM MENU LATERAL -->
+
 
 <!-- PARTE DE CADASTRO -->
 <div class="large-9 columns">
 	<center><h4 id="titulo" class="panel"><?php echo $titulo?></h4></center>
-	<form action="salvar_usuario.php" method="post" onSubmit="return confere()" >
+	<form action="salvar_apresentacao.php" method="post" onSubmit="return confere()" >
 		<!-- ID, só existirá se estiver editando, portando fica escondido. tipo 'hidden'-->
-		<input type="hidden" name="id" value=<?php echo "'$usuario->id'";?>>
-		<div class="large-5 columns">
-			<!-- LOGIN -->
-			<?php 
-			if($usuario->login=='admin'){
-				$enabled="disabled";
-				$chk='disabled ';
-				$chk='disabled '; ?>
-				<input type="hidden" name="login" value="admin">
-				<input type="hidden" name="permissao" value="1">
-			<?php }?>
-			<label>Login:
-			<input  id="login" name="login" type="text" placeholder="nome para login" 
-				value=<?php echo "'$usuario->login'"; echo $enabled?> ></input></label>
-
-
-			<!-- SENHA -->
-			<label>Senha:
-			<input id="senha" name="senha" type="password" ></input></label>
-
-			<!--PERMISSAO-->
-			<label>Nível de permissão</label>
-			<?php 
-			if($usuario->permissao==1) {
-				$chk.=' checked';
-			}else
-				$chk2.=' checked';
-			?>
-			<input id="cbox1" name="permissao" type="radio" value="1" <?php echo $chk;?>>
-			<label for="cbox1">Administrador</label>
-			<input id="cbox2" name="permissao" type="radio" value="0" <?php echo $chk2;?>>
-			<label for="cbox2">Normal</label>
+			<br><label>Descrição:
+				<textarea id="texto" name="texto" style="width:100%">
+					<?php echo $praga->texto;?>
+				</textarea></label>
+		<div class="large-5 columns">			
 			<!--SALVAR-->
 			<center><input  class="button bt-salvar" type="submit" value="Salvar"></center>
 		</div>	
 	</form>
 </div>
+
+<!-- SCRIPT GERAR EDITORES DE TEXO -->
+<script type="text/javascript" src="../../../resource/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+//desabilita botao de salvar ao ser clicado
+$("#btSalvar").click(function (){
+                // desabilita o campo 
+        $("#btSalvar").prop("disabled", true);
+});
+tinymce.init({
+	selector: "textarea",
+	language: "pt_BR",
+	theme: "modern",
+	plugins: [
+	"advlist autolink lists link charmap print preview hr pagebreak",
+	"searchreplace wordcount visualblocks visualchars code fullscreen",
+	"insertdatetime  nonbreaking save table contextmenu directionality",
+	"emoticons template paste textcolor colorpicker textpattern"
+	],
+	toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | print preview  | forecolor backcolor",
+	toolbar2: "",
+	image_advtab: true,
+	templates: [
+	{title: 'Test template 1', content: 'Test 1'},
+	{title: 'Test template 2', content: 'Test 2'}
+	]
+});
+</script>
+<!-- FIM SCRIPT GERAR EDITOR DE TEXTO-->
 <?php
 include '../../template/rodape.php';
 ?>

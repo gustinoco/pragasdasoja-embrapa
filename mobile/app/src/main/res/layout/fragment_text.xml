@@ -1,24 +1,22 @@
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
     android:paddingRight="16dp"
     android:paddingLeft="16dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars = "vertical">
-        <android.widget.TextView
-            android:id="@+id/txtArea"
-            android:autoLink="web"
-            android:textIsSelectable="true"
-            android:linksClickable="true"
-            android:paddingTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-</LinearLayout>
-    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars = "vertical">
+            <TextView
+                android:id="@+id/txtArea"
+                android:autoLink="web"
+                android:textIsSelectable="true"
+                android:linksClickable="true"
+                android:paddingTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
+</ScrollView>
