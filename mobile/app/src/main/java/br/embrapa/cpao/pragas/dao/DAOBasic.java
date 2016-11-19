@@ -88,6 +88,15 @@ public abstract class DAOBasic <T extends EntidadePersistivel>{
 		else
 			return result.get(0);
 	}
+
+	public T recuperarUm(){
+		String sql = "SELECT * FROM "+getNomeTabela();
+		List<T> result = recuperarPorQuerySQL(sql);
+		if(result==null || result.isEmpty())
+			return null;
+		else
+			return result.get(0);
+	}
 	
 	public List<T> recuperarPorQuerySQL(String sql){
 		Cursor cursor = dataBase.rawQuery(sql, null);

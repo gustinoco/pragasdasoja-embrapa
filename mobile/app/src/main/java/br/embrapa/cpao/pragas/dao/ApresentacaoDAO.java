@@ -3,6 +3,8 @@ package br.embrapa.cpao.pragas.dao;
 import android.content.ContentValues;
 import android.content.Context;
 
+import java.util.List;
+
 import br.embrapa.cpao.pragas.models.Apresentacao;
 
 /**
@@ -44,7 +46,6 @@ public class ApresentacaoDAO extends DAOBasic<Apresentacao> {
     public String getNomeColunaPrimaryKey() {
         return COLUNA_TEXTO;
     }
-
 
     @Override
     public ContentValues entidadeParaContentValues(Apresentacao apresentacao) {

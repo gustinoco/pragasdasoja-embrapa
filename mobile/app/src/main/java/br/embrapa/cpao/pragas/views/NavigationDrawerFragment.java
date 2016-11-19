@@ -14,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,8 +26,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import br.embrapa.cpao.pragas.R;
+import br.embrapa.cpao.pragas.controllers.ApresentacaoController;
+import br.embrapa.cpao.pragas.models.Apresentacao;
 
 
 /**
@@ -66,6 +70,9 @@ public class NavigationDrawerFragment extends Fragment {
     private LinearLayout mDrawerLinearLaryout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
+    TextView tvApresentacao;
+    String _texto;
+
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -73,6 +80,12 @@ public class NavigationDrawerFragment extends Fragment {
 
     public NavigationDrawerFragment() {
     }
+
+
+    public NavigationDrawerFragment(String texto) {
+        _texto=texto;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,6 +124,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView = (ListView) mDrawerLinearLaryout.findViewById(R.id.lvListaMenu);
 
 
+
         String[] itens = {
                 getString(R.string.apresentacao),
                 getString(R.string.sobre),
@@ -132,9 +146,15 @@ public class NavigationDrawerFragment extends Fragment {
                                     int position, long id) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 if(position ==0){//apresentação
+
+                    //ApresentacaoController apresentacaoController = new ApresentacaoController(this);
                     AlertDialog alerta;
                     LayoutInflater li = getActivity().getLayoutInflater();
                     View v = li.inflate(R.layout.apresentacao, null);
+
+                    Apresentacao apresentacao = new ApresentacaoController(getActivity().getBaseContext()).getApresentacaoTexto();
+                    tvApresentacao = (TextView) v.findViewById(R.id.apresentacao);
+                    tvApresentacao.setText(Html.fromHtml(apresentacao.getTexto()));
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(getString(R.string.apresentacao));
                     builder.setView(v);
@@ -183,6 +203,11 @@ public class NavigationDrawerFragment extends Fragment {
         return mDrawerLayout != null
                 && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
+
+
+
+
+
 
     /**
      * Users of this fragment must call this method to set up the navigation

@@ -1,9 +1,7 @@
 package br.embrapa.cpao.pragas.dao;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +10,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 
 import br.embrapa.cpao.pragas.models.PragaFoto;
 
-import static br.embrapa.cpao.pragas.utils.Util.isExternalStorageWritable;
 import static br.embrapa.cpao.pragas.utils.Util.saveArrayToInternalStorage;
-import static br.embrapa.cpao.pragas.utils.Util.saveArrayToSDCard;
-
 
 /**
  * Classe responsável por por persistir Foto no banco de dados local.
