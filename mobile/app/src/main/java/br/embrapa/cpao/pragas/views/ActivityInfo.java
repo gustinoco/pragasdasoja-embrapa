@@ -15,8 +15,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import br.embrapa.cpao.pragas.Adapters.SectionsPagerAdapter;
 import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.fragments.FragmentPage;
-import br.embrapa.cpao.pragas.fragments.FragmentPageAutor;
-import br.embrapa.cpao.pragas.utils.Util;
 
 /**
  * Atividade que exibe as informações, como descrição, localização, bibliografia e etc.
@@ -28,7 +26,7 @@ public class ActivityInfo extends ActivityApp {
 
     /**
      * Adapter do ViewPager, possui e gerencia as paginas que sera exibidas no ViewPager
-     */
+    */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**

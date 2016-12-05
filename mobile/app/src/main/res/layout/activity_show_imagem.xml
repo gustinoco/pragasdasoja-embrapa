@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#dce2e7"
-            android:textSize="10sp"
+            android:textSize="20sp"
             android:textStyle="italic"
             android:text="descricao da foto "
             />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textColor="#dce2e7"
             android:padding="0dp"
-            android:textSize="10sp"
+            android:textSize="20sp"
             android:text="nome do fotógrafo"
             />
 

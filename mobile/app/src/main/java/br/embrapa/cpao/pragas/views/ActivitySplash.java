@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import br.embrapa.cpao.pragas.R;
+import br.embrapa.cpao.pragas.models.Constants;
 
 public class ActivitySplash extends Activity {
-    private int tempo = 3000;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +18,18 @@ public class ActivitySplash extends Activity {
         splash.start();
     }
 
+   private class Splash extends Thread{
+        @Override
+        public void run(){
+            try {
+                sleep(Constants.timeSplash);
+                iniciarSistema();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void iniciarSistema(){
         Intent intent = new Intent(this, ActivityMain.class);
         intent.setAction(Intent.ACTION_MAIN);
@@ -27,17 +37,5 @@ public class ActivitySplash extends Activity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
-    }
-
-    private class Splash extends Thread{
-        @Override
-        public void run(){
-            try {
-                sleep(tempo);
-                iniciarSistema();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

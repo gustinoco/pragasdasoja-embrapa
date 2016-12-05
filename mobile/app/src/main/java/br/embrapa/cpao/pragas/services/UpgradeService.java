@@ -187,12 +187,13 @@ public class UpgradeService extends IntentService  {
         List<Praga> novasPragas;
         boolean sucesso = false;
         int cont=0;
-        Apresentacao apresentacao = new Apresentacao();
+        Apresentacao apresentacao;
 
         apresentacao = ApresentacaoResource.atualizaApresentacao(context);
         if(apresentacao == null)
             return false;
         else{
+            daoApresentacao.deletarTodos();
             daoApresentacao.salvar(apresentacao);
         }
 

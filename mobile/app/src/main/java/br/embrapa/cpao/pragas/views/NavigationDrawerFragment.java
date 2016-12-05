@@ -82,9 +82,9 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-    public NavigationDrawerFragment(String texto) {
+   /* public NavigationDrawerFragment(String texto) {
         _texto=texto;
-    }
+    }*/
 
 
     @Override

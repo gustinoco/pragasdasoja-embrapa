@@ -66,7 +66,7 @@ public class ActivityOpcoes extends ActivityApp{
         itens.add(new ItemListView(getString(R.string.atualizar_bd), getString(R.string.atualizar_bd_descricao), R.drawable.ic_download));
         itens.add(new ItemListView(getString(R.string.enviar_praga), getString(R.string.enviar_praga_descricao), R.drawable.ic_send));
         itens.add(new ItemListView(getString(R.string.fale_conosco), getString(R.string.fale_conosco_descricao), R.drawable.ic_talk));
-        itens.add(new ItemListView(getString(R.string.ajuda), getString(R.string.ajuda_descricao), R.drawable.ic_help3));
+        itens.add(new ItemListView(getString(R.string.ajuda), getString(R.string.ajuda_descricao), R.drawable.ic_help));
         AdapterListOpcoes adapter = new AdapterListOpcoes(this, itens);
         lvOpcoes.setAdapter(adapter);
     }

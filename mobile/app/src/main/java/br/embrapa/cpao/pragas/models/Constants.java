@@ -5,5 +5,5 @@ package br.embrapa.cpao.pragas.models;
  */
 
 public class Constants {
-    public static int timeSplash = 2000;
+    public static int timeSplash = 3000;
 }
