@@ -33,7 +33,7 @@
             android:gravity="center"/>
         <TextView
             style="@style/p"
-            android:text="Embrapa Agropecuária do Oeste"
+            android:text="Embrapa Agropecuária Oeste"
             android:layout_gravity="center"
             android:gravity="center"/>
     </LinearLayout>
@@ -59,7 +59,7 @@
         <TextView
             style="@style/p"
             android:text="\t\tPragas da soja, conheça e previna-se \ Crébio José Ávila. - Dourados, MS:
-\t\tEmbrapa Agropecuária Oeste, 2015."/>
+\t\tEmbrapa Agropecuária Oeste, 2017."/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
