@@ -12,6 +12,8 @@ import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
 import br.embrapa.cpao.pragas.models.PragaFoto;
 
 import static br.embrapa.cpao.pragas.utils.Util.saveArrayToInternalStorage;
@@ -113,6 +115,7 @@ public class FotoDAO extends DAOBasic<PragaFoto> {
 			saveArrayToInternalStorage(getContext(),fileName,foto.getFoto());
 			super.salvar(foto);
 		} catch (IOException e) {
+			Crashlytics.logException(e);
 			e.printStackTrace();
 			Log.w("InternalStorage", "Erro salvar imagem na memoria interna", e);
 		}

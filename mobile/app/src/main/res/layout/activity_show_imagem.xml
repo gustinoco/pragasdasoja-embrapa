@@ -39,7 +39,7 @@
             android:textColor="#dce2e7"
             android:textSize="20sp"
             android:textStyle="italic"
-            android:text="descricao da foto "
+            android:text="descricao da foto"
             />
         <TextView
             android:id="@+id/tv_fotografo"
@@ -48,7 +48,7 @@
             android:textColor="#dce2e7"
             android:padding="0dp"
             android:textSize="20sp"
-            android:text="nome do fotógrafo"
+            android:text="nome do foto"
             />
 
     </LinearLayout>

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ public abstract class HttpSync<T> {
 
         } catch (IOException e) {
             e.printStackTrace();
+            Crashlytics.logException(e);
             httpResponse = new HttpResponse(-1, "erro ao acessar conteúdo");
         }
         return onPostExecute(httpResponse);

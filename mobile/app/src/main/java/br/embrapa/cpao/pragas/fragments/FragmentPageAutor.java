@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -110,6 +112,7 @@ public class FragmentPageAutor extends Fragment {
             try {
                 wvDescricao.loadData(URLEncoder.encode(conteudo, Util.getCharset()).replaceAll("\\+"," "), "text/html", Util.getCharset());
             } catch (UnsupportedEncodingException e) {
+                Crashlytics.logException(e);
                 e.printStackTrace();
             }
         }

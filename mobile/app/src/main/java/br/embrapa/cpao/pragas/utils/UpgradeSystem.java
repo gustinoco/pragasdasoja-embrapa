@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -90,6 +92,7 @@ public class UpgradeSystem extends AsyncTask<Void, Integer,Boolean> {
                 novasPragas = PragaResource.downloadPragas(context,
                         daoPraga.recuperarMapPragasExistentes());
             } catch (UnsupportedEncodingException e) {
+                Crashlytics.logException(e);
                 e.printStackTrace();
                 publishProgress(0);
                 return false;
@@ -113,6 +116,7 @@ public class UpgradeSystem extends AsyncTask<Void, Integer,Boolean> {
                             daoFoto.salvar(f);
                             f.setFoto(null);//libera memoria
                         } catch (IOException e) {
+                            Crashlytics.logException(e);
                             Log.d("ERRO DOWNLOAD", "não foi possível fazer download da foto " + f.getId() + " da praga " + p.getId(), e);
                             e.printStackTrace();
                         }

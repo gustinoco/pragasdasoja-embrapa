@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.crashlytics.android.Crashlytics;
+
 import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.models.Constants;
 
@@ -25,6 +27,7 @@ public class ActivitySplash extends Activity {
                 sleep(Constants.timeSplash);
                 iniciarSistema();
             } catch (InterruptedException e) {
+                Crashlytics.logException(e);
                 e.printStackTrace();
             }
         }

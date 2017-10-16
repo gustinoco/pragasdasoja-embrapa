@@ -1,10 +1,5 @@
 package br.embrapa.cpao.pragas.views;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,12 +22,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.embrapa.cpao.pragas.BuildConfig;
+import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.models.UsuarioRetorno;
 import br.embrapa.cpao.pragas.models.UsuarioRetornoFoto;
 import br.embrapa.cpao.pragas.resource.FeedBackResource;
 import br.embrapa.cpao.pragas.utils.ImageHelper;
 import br.embrapa.cpao.pragas.utils.K;
-import br.embrapa.cpao.pragas.R;
 
 /**
  * Ativiadade responsável por enviar dados de pragas desconhecidas
@@ -57,7 +61,7 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
     private UsuarioRetorno user;
 
     /**
-     *  Botão que envia foto
+     * Botão que envia foto
      */
     Button btEnviar;
 
@@ -67,6 +71,7 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
      */
     Uri uriImage1Camera;
     Uri uriImage2Camera;
+    String tag;
 
 
     /**
@@ -137,26 +142,25 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
      * esse método é chamado como função de adicionar nova imagem.
      */
     private void selecionarFoto(View v) {
-        final String tag = v.getTag().toString();
+        tag = v.getTag().toString();
         AlertDialog.Builder build = new AlertDialog.Builder(this);
         build.setTitle(R.string.selecionar_opcao);
         build.setMessage("");
         build.setPositiveButton(R.string.camera, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                abrirCamera(tag);
+                abrirCamera("0");
             }
         });
         build.setNegativeButton(R.string.galeria, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                abrirGaleria(tag);
+                abrirGaleria("1");
             }
         });
         AlertDialog alerta = build.create();
         alerta.show();
     }
-
 
 
     /**
@@ -166,19 +170,14 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
-            try{
+            try {
                 photoFile = createImageFile();
-            }catch (IOException e){
-
+            } catch (IOException e) {
+                Crashlytics.logException(e);
             }
-            if(photoFile!=null){
-                if(tag.equals("0")) {
-                    uriImage1Camera = Uri.fromFile(photoFile);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImage1Camera);
-                }else{
-                    uriImage2Camera = Uri.fromFile(photoFile);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImage2Camera);
-                }
+            if (photoFile != null) {
+                uriImage1Camera = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", photoFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImage1Camera);
                 startActivityForResult(intent, Integer.parseInt(tag));
             }
         }
@@ -186,6 +185,7 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
 
     /**
      * Cria arquivo onde imagem capturada pela camera será salvo.
+     *
      * @return
      * @throws IOException
      */
@@ -200,7 +200,7 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-        
+
         // Save a file: path for use with ACTION_VIEW intents
         //mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
@@ -265,15 +265,15 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
      * Método responsável por limpar todos os campos dos componentes gráficos, é chamado após envio de informações para o <i>webservice</i> ser concluído
      */
     private void limpaCampos() {
-        if(etNome!=null)
+        if (etNome != null)
             etNome.setText("");
-        if(etEmail!=null)
+        if (etEmail != null)
             etEmail.setText("");
-        if(etDescricao!=null)
+        if (etDescricao != null)
             etDescricao.setText("");
-        if(ivFoto1!=null)
+        if (ivFoto1 != null)
             ivFoto1.setImageResource(R.drawable.ic_add_photo);
-        if(ivFoto2!=null)
+        if (ivFoto2 != null)
             ivFoto2.setImageResource(R.drawable.ic_add_photo);
         user = null;
         user = new UsuarioRetorno();
@@ -303,22 +303,22 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
     /**
      * Responsável por enviar dados da praga desconhecida para o servidor
      */
-    class TarefaEnviar extends AsyncTask<Void, Void,String>{
+    class TarefaEnviar extends AsyncTask<Void, Void, String> {
         Context context;
         ProgressDialog progress;
-        Toast sucesso,falha;
+        Toast sucesso, falha;
         UsuarioRetorno user;
 
         FeedBackResource fbc;
 
-        public TarefaEnviar(Context context, UsuarioRetorno user){
+        public TarefaEnviar(Context context, UsuarioRetorno user) {
             this.context = context;
             this.user = user;
         }
 
         //inicializa componentes
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             progress = new ProgressDialog(context);
             progress.setMessage(getString(R.string.aguarde_descricao));
             progress.setCancelable(false);
@@ -346,8 +346,8 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
 
         //atualiza componentes graficos
         @Override
-        protected void onPostExecute(String result){
-            if ( result!=null && result.equals(K.SUCESSO)) {
+        protected void onPostExecute(String result) {
+            if (result != null && result.equals(K.SUCESSO)) {
                 sucesso.show();
             } else
                 falha.show();
@@ -357,21 +357,20 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
     }
 
 
-
     //Classe responsável por carregar foto retornada da camera ou galeria e exibir na tela
-    class TarefaLoadFoto extends AsyncTask<Void, Void, Void>{
+    class TarefaLoadFoto extends AsyncTask<Void, Void, Void> {
         Context context;
         Intent data;
-        ImageView ivFoto1,ivFoto2;
+        ImageView ivFoto1, ivFoto2;
         Bitmap bitmap;
         int requestCode;
         Button btAction;
 
-        public TarefaLoadFoto(Context context,Intent data,ImageView ivFoto1,ImageView ivFoto2, Button btAction,int requestCode){
+        public TarefaLoadFoto(Context context, Intent data, ImageView ivFoto1, ImageView ivFoto2, Button btAction, int requestCode) {
             this.context = context;
             this.data = data;
-            this.ivFoto1=ivFoto1;
-            this.ivFoto2=ivFoto2;
+            this.ivFoto1 = ivFoto1;
+            this.ivFoto2 = ivFoto2;
             this.btAction = btAction;
             this.requestCode = requestCode;
         }
@@ -387,59 +386,54 @@ public class ActivityEnviarPragaDesconhecida extends ActivityApp {
                 int screenWidth = displaymetrics.widthPixels;
                 int screenHeight = displaymetrics.heightPixels;
 
-                if(data==null){
-
-                    if(requestCode==0) {
-                        if(screenWidth<500)
-                            bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage1Camera, 200, 200);
-                        else
-                            bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage1Camera, screenWidth/2, screenWidth/2);
-                    }else {
-                        if(screenWidth<500)
-                            bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage2Camera, 200, 200);
-                        else
-                            bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage2Camera, 200, 200);
-                    }
-                }else{//imagem da galeria de imagens
+                if (requestCode == 0) {
+                    if (screenWidth < 500)
+                        bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage1Camera, 200, 200);
+                    else
+                        bitmap = ImageHelper.decodeBitmapFromUri(context, uriImage1Camera, screenWidth / 2, screenWidth / 2);
+                } else {//imagem da galeria de imagens
+                    //      Uri imageUriGaleria = data.getData();
                     Uri imageUriGaleria = data.getData();
-                    if(screenWidth<500)
+                    if (screenWidth < 500)
                         bitmap = ImageHelper.decodeBitmapFromUri(context, imageUriGaleria, 200, 200);
                     else
-                        bitmap = ImageHelper.decodeBitmapFromUri(context, imageUriGaleria, screenWidth/2, screenWidth/2);
+                        bitmap = ImageHelper.decodeBitmapFromUri(context, imageUriGaleria, screenWidth / 2, screenWidth / 2);
                 }
 
                 //salva foto
-                if(bitmap!=null) {
+                if (bitmap != null) {
                     String imageBase64 = ImageHelper.encodeToBase64(bitmap);
                     user.getFotos().set(requestCode, new UsuarioRetornoFoto(imageBase64));
                 }
 
             } catch (IOException e) {
+                Crashlytics.logException(e);
                 e.printStackTrace();
             }
             return null;
         }
+
         @Override
-        protected void  onProgressUpdate(Void... params){
+        protected void onProgressUpdate(Void... params) {
             btAction.setEnabled(false);
             btAction.setText("Aguarde carregamento da foto");
-            if (ivFoto1.getTag().equals(requestCode + ""))
+            if (ivFoto1.getTag().equals(tag + ""))
                 ivFoto1.setImageResource(R.drawable.clock_black);
-            if (ivFoto2.getTag().equals(requestCode + ""))
+            if (ivFoto2.getTag().equals(tag + ""))
                 ivFoto2.setImageResource(R.drawable.clock_black);
         }
 
         @Override
-        protected void onPostExecute(Void param){
+        protected void onPostExecute(Void param) {
             //exibe imagem no componente grafico na tela
-            if(bitmap!=null) {
-                if (ivFoto1.getTag().equals(requestCode + ""))
+            if (bitmap != null) {
+                if (ivFoto1.getTag().equals(tag + ""))
                     ivFoto1.setImageBitmap(bitmap);
                 else
                     ivFoto2.setImageBitmap(bitmap);
-            }else{
+            } else {
                 //algum erro então volte a imagem default
-                if (ivFoto1.getTag().equals(requestCode + ""))
+                if (ivFoto1.getTag().equals(tag + ""))
                     ivFoto1.setImageResource(R.drawable.ic_add_photo);
                 else
                     ivFoto2.setImageResource(R.drawable.ic_add_photo);

@@ -7,12 +7,12 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -27,6 +27,11 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.crashlytics.android.Crashlytics;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.controllers.ApresentacaoController;
@@ -124,7 +129,6 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView = (ListView) mDrawerLinearLaryout.findViewById(R.id.lvListaMenu);
 
 
-
         String[] itens = {
                 getString(R.string.apresentacao),
                 getString(R.string.sobre),
@@ -145,7 +149,7 @@ public class NavigationDrawerFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                if(position ==0){//apresentação
+                if (position == 0) {//apresentação
 
                     //ApresentacaoController apresentacaoController = new ApresentacaoController(this);
                     AlertDialog alerta;
@@ -184,10 +188,16 @@ public class NavigationDrawerFragment extends Fragment {
                     alerta = builder.create();
                     alerta.show();
                 }*/
-                if(position==3){
+                if (position == 3) {
                     AlertDialog alerta;
                     LayoutInflater li = getActivity().getLayoutInflater();
                     View v = li.inflate(R.layout.ficha_catalografica, null);
+                    TextView txtFicha = (TextView) v.findViewById(R.id.ficha_id);
+                    Date dataAtual = new Date();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(dataAtual);
+                    int year = cal.get(Calendar.YEAR);
+                    txtFicha.setText(String.format("\t\tPragas da soja, conheça e previna-se \n\t\tCrébio José Ávila. - Dourados, MS:\n\t\tEmbrapa Agropecuária Oeste, %d.", year));
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(getString(R.string.fica_catalografica));
                     builder.setView(v);
@@ -203,10 +213,6 @@ public class NavigationDrawerFragment extends Fragment {
         return mDrawerLayout != null
                 && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
     }
-
-
-
-
 
 
     /**
@@ -230,7 +236,6 @@ public class NavigationDrawerFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
-
 
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -277,6 +282,7 @@ public class NavigationDrawerFragment extends Fragment {
         try {
             mCallbacks = (NavigationDrawerCallbacks) activity;
         } catch (ClassCastException e) {
+            Crashlytics.logException(e);
             throw new ClassCastException(
                     "Activity must implement NavigationDrawerCallbacks.");
         }
@@ -353,10 +359,10 @@ public class NavigationDrawerFragment extends Fragment {
     /**
      * Desenha efeito ao exibir o menu lateral.
      */
-    private class CustomActionBarDrawerToggle extends ActionBarDrawerToggle{
+    private class CustomActionBarDrawerToggle extends ActionBarDrawerToggle {
 
         public CustomActionBarDrawerToggle(Activity mActivity,
-                                    DrawerLayout mDrawerLayout) {
+                                           DrawerLayout mDrawerLayout) {
             super(mActivity, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         }
 

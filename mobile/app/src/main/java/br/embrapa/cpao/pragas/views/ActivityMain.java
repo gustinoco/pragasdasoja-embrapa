@@ -1,7 +1,10 @@
 package br.embrapa.cpao.pragas.views;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,9 +13,11 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import br.embrapa.cpao.pragas.R;
 import br.embrapa.cpao.pragas.fragments.Fragmento_ListaPragas;
+import br.embrapa.cpao.pragas.utils.PermissionUtil;
 
 
 /**
@@ -50,7 +55,27 @@ public class ActivityMain extends ActivityApp implements
 		//cria menu lateral esquerdo, o que exibe ao arrastar com o dedo
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		verificaPermissoes();
 
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+	}
+
+	private void verificaPermissoes(){
+		int PERMISSION_ALL = 1;
+		String[] PERMISSIONS = new String[0];
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.INTERNET};
+		} else {
+			PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.INTERNET};
+		}
+		if (!PermissionUtil.hasPermissions(this, PERMISSIONS)) {
+			ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+		}
 	}
 
 	@Override

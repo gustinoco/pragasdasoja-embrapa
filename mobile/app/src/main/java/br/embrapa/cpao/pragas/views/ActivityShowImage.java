@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.FileNotFoundException;
 
 import br.embrapa.cpao.pragas.controllers.FotosController;
@@ -107,7 +109,7 @@ public class ActivityShowImage extends ActivityApp {
             llCredito.setVisibility(View.GONE);
         else {
             if(foto.getFotografo()!=null || !foto.getFotografo().isEmpty())
-                tvFotografo.setText("Fotógrafo: "+foto.getFotografo());
+                tvFotografo.setText("Foto: "+foto.getFotografo());
             if(foto.getDescricao()!=null || !foto.getDescricao().isEmpty())
                 tvDescricaoFoto.setText(foto.getDescricao());
         }
@@ -128,6 +130,7 @@ public class ActivityShowImage extends ActivityApp {
                 bmp = decodeBitmapFromUri(this, foto.getUri(this), screenWidth/2, screenWidth/2);
             ivFoto.setImageBitmap(bmp);
         } catch (FileNotFoundException e) {
+            Crashlytics.logException(e);
             Log.d("Erro ao abrir imagem","não foi possível abrir imagem", e);
             Toast.makeText(this,"Não foi possível abrir imagem", Toast.LENGTH_SHORT).show();
             finish();

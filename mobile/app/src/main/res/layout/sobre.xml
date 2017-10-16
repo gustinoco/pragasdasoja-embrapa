@@ -23,8 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Rodovia BR 163, Km 253,6, Caixa Postal 449, CEP: 79804-970, Dourados, MS\n
-Fone: + 55 (67) 3416-9700 \n Fax: + 55 (67) 3416-9721" />
+        android:text="Rodovia BR 163, Km 253,6, Caixa Postal 449, CEP: 79804-970, Dourados, MS\nFone: +55 (67) 3416-9700\nFax: +55 (67) 3416-9721" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,8 +38,7 @@ Fone: + 55 (67) 3416-9700 \n Fax: + 55 (67) 3416-9721" />
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Parque Estação Biológica - PqEB s/nº. Brasília, DF - Brasil - CEP 70770-901\n
-        Fone: (61) 3448-4433 \n Fax: (61) 3448-4890 / 3448-4891" />
+        android:text="Parque Estação Biológica - PqEB s/nº. Brasília, DF - Brasil - CEP 70770-901\nFone: +55 (61) 3448-4433\nFax: +55 (61) 3448-4890 / 3448-4891" />
 
     <TextView
         android:layout_width="wrap_content"

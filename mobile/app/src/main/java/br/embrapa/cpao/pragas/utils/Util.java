@@ -12,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -78,6 +80,7 @@ public class Util {
             os.write(imagem);
             os.close();
         } catch (IOException e) {
+            Crashlytics.logException(e);
             Log.w("ExternalStorage", "Error writing", e);
         }
     }

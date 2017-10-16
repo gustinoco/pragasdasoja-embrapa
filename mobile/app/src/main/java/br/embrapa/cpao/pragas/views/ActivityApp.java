@@ -1,20 +1,14 @@
 package br.embrapa.cpao.pragas.views;
 
-import android.app.Activity;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import br.embrapa.cpao.pragas.R;
 
@@ -22,7 +16,7 @@ import br.embrapa.cpao.pragas.R;
 /**
  * Activity pai de todas, todas as activitys devem ser herdadas desta, qualquer modificação em comum
  * deve ser feita nessa activity. Manter este padrão para futuras modificações
- *
+ * <p>
  * Created by franco on 13/03/16.
  */
 public abstract class ActivityApp extends AppCompatActivity {
@@ -42,10 +36,10 @@ public abstract class ActivityApp extends AppCompatActivity {
 
     }
 
-    public void updateCustomActionBar(String titulo){
+    public void updateCustomActionBar(String titulo) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_top);
 
-        TextView tituloToolbar=(TextView) toolbar.findViewById(R.id.toolbar_title);
+        TextView tituloToolbar = (TextView) toolbar.findViewById(R.id.toolbar_title);
         tituloToolbar.setText(titulo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,14 +47,14 @@ public abstract class ActivityApp extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         //altera cor da seta de voltar
-        if (Build.VERSION.SDK_INT >= 23 ){
-            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        if (Build.VERSION.SDK_INT >= 23) {
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
             // mudar para
             //Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
             upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
-        }else{
-            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        } else {
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
             upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
         }
@@ -69,7 +63,6 @@ public abstract class ActivityApp extends AppCompatActivity {
 
     /**
      * Pinta barra de status do sistema, apenas para versões igual ou acima da Lollipop
-     *
      */
     protected void paintToolbarSystem() {
 

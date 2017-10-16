@@ -3,6 +3,8 @@ package br.embrapa.cpao.pragas.http;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedInputStream;
@@ -53,6 +55,7 @@ public class HttpConnection {
             String msg = IOUtils.toString(in, "UTF-8");
             response.setResponse(msg);
         }catch (IOException ex){
+            Crashlytics.logException(ex);
             ex.printStackTrace();
         }
 
@@ -105,6 +108,7 @@ public class HttpConnection {
             String msg = IOUtils.toString(in, "UTF-8");
             response.setResponse(msg);
         }catch (IOException ex){
+            Crashlytics.logException(ex);
             ex.printStackTrace();
         }
 

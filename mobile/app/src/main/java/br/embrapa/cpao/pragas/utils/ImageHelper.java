@@ -10,6 +10,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
@@ -89,6 +91,7 @@ public class ImageHelper extends AsyncTask<Void,Void,Bitmap>{
                 try {
                     bmp = decodeBitmapFromUri(context, imageUri,width,height);
                 } catch (FileNotFoundException e) {
+                    Crashlytics.logException(e);
                     e.printStackTrace();
                 }
         }
@@ -196,6 +199,8 @@ public class ImageHelper extends AsyncTask<Void,Void,Bitmap>{
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, options);
+
+
 
         // Calculate inSampleSize
         options.inSampleSize = calculateSize(options, reqWidth, reqHeight);

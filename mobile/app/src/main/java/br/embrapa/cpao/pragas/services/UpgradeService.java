@@ -12,6 +12,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -257,6 +259,7 @@ public class UpgradeService extends IntentService  {
                         daoPraga.recuperarMapPragasExistentes());
 
             } catch (UnsupportedEncodingException e) {
+                Crashlytics.logException(e);
                 e.printStackTrace();
                 sendProgess(0,-1);
                 return false;
@@ -281,6 +284,7 @@ public class UpgradeService extends IntentService  {
                             daoFoto.salvar(f);
                             f.setFoto(null);//libera memoria
                         } catch (IOException e) {
+                            Crashlytics.logException(e);
                             Log.d("ERRO DOWNLOAD", "não foi possível fazer download da foto " + f.getId() + " da praga " + p.getId(), e);
                             e.printStackTrace();
                             sendProgess(0,-1);

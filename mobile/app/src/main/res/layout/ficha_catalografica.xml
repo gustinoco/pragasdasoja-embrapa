@@ -57,6 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/ficha_id"
             style="@style/p"
             android:text="\t\tPragas da soja, conheça e previna-se \ Crébio José Ávila. - Dourados, MS:
 \t\tEmbrapa Agropecuária Oeste, 2017."/>
@@ -68,7 +69,7 @@
             android:layout_marginLeft="20dp"
             style="@style/p"
             android:text="Aplicativo para celular.
-Sistema requerido: Android 4.0 ou superior.\nModo de acesso: World Wide Web.\nTítulo da tela\nAplicativo desenvolvido por Juarez Arce Franco Junior"/>
+Sistema requerido: Android 4.0 ou superior.\nModo de acesso: World Wide Web.\nTítulo da tela\nAplicativo desenvolvido por Juarez Arce Franco Junior e Gustavo Tinoco"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

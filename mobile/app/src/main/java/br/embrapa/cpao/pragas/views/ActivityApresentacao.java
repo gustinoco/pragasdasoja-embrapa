@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import java.util.List;
 
 import br.embrapa.cpao.pragas.controllers.PragasController;
@@ -101,6 +103,7 @@ public class ActivityApresentacao extends Activity implements ResultTask, Servic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);//Remove titulo da actionBar
+        Fabric.with(this, new Crashlytics());
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //infla layout
